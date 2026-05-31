@@ -1,0 +1,143 @@
+---
+---
+
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <div class="t-inner"><span class="t-item t-loading">Loading market data…</span></div>
+  </div>
+</div>
+
+<style>
+  .ticker-wrap {
+    overflow: hidden;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    cursor: default;
+    user-select: none;
+  }
+
+  .ticker-track {
+    display: flex;
+    white-space: nowrap;
+    animation: ticker-scroll 80s linear infinite;
+  }
+
+  .ticker-wrap:hover .ticker-track {
+    animation-play-state: paused;
+  }
+
+  .t-inner {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  /* :global() required — these elements are created via JS innerHTML
+     and don't receive Astro's scoped data attribute */
+  :global(.t-item) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.45rem 1.75rem;
+  }
+
+  :global(.t-item::after) {
+    content: '|';
+    margin-left: 1rem;
+    color: #3a4050;
+    font-weight: 300;
+  }
+
+  :global(.t-loading) {
+    color: var(--muted);
+    padding: 0.45rem 1.5rem;
+  }
+
+  :global(.t-label) {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  :global(.t-price) {
+    color: rgba(201, 168, 76, 0.95);
+    font-weight: 500;
+  }
+
+  :global(.t-change) {
+    color: rgba(201, 168, 76, 0.45);
+  }
+
+  @keyframes ticker-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+</style>
+
+<script>
+  const WORKER_URL = 'https://lucky-violet-03bf.traderskeptical.workers.dev/';
+
+  const SYMBOLS = [
+    { ticker: 'SPY',             label: 'S&P 500'      },
+    { ticker: 'QQQ',             label: 'Nasdaq'        },
+    { ticker: 'DIA',             label: 'Dow'           },
+    { ticker: 'TLT',             label: '20Y Treasury'  },
+    { ticker: 'AGG',             label: 'Bonds'         },
+    { ticker: 'GLD',             label: 'Gold'          },
+    { ticker: 'USO',             label: 'Crude Oil'     },
+    { ticker: 'OANDA:EUR_USD',   label: 'EUR/USD'       },
+    { ticker: 'BINANCE:BTCUSDT', label: 'Bitcoin'       },
+    { ticker: 'BINANCE:ETHUSDT', label: 'Ethereum'      },
+  ];
+
+  interface Quote {
+    symbol: string;
+    c: number | null;
+    d: number | null;
+    dp: number | null;
+  }
+
+  function fmtPrice(price: number, ticker: string): string {
+    if (ticker === 'BINANCE:BTCUSDT') return price.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    if (ticker === 'OANDA:EUR_USD') return price.toFixed(4);
+    return price.toFixed(2);
+  }
+
+  function fmtSigned(n: number, decimals = 2): string {
+    return (n >= 0 ? '+' : '') + n.toFixed(decimals);
+  }
+
+  function buildItems(quotes: Quote[] | null): string {
+    return SYMBOLS.map(({ ticker, label }) => {
+      const q = quotes?.find(r => r.symbol === ticker);
+      const price = q?.c ? fmtPrice(q.c, ticker) : '—';
+      const change = q?.d != null && q?.dp != null && q.c
+        ? `<span class="t-change">${fmtSigned(q.d)} (${fmtSigned(q.dp)}%)</span>`
+        : '';
+      return `<span class="t-item"><span class="t-label">${label}</span><span class="t-price">${price}</span>${change}</span>`;
+    }).join('');
+  }
+
+  function render(quotes: Quote[] | null): void {
+    const track = document.querySelector('.ticker-track') as HTMLElement | null;
+    if (!track) return;
+    const html = buildItems(quotes);
+    track.innerHTML =
+      `<div class="t-inner">${html}</div>` +
+      `<div class="t-inner" aria-hidden="true">${html}</div>`;
+  }
+
+  async function fetchQuotes(): Promise<Quote[] | null> {
+    try {
+      const res = await fetch(WORKER_URL);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return await res.json() as Quote[];
+    } catch {
+      return null;
+    }
+  }
+
+  render(null);
+  fetchQuotes().then(quotes => { if (quotes) render(quotes); });
+</script>

@@ -1,41 +1,31 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const base = import.meta.env.BASE_URL;
 
 const allArticles = await getCollection('articles', ({ data }) => !data.draft);
 allArticles.sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
-const recent = allArticles.slice(0, 3);
 
 function formatDate(date: Date) {
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 ---
 
-<BaseLayout>
-  <div class="home-hero">
-    <h1>The Skeptical Trader</h1>
-    <p class="home-tagline">
-      Cutting through the spin — the reality of trading and current market events.
-    </p>
-  </div>
-
-  <p class="section-heading">Recent Articles</p>
+<BaseLayout title="Articles" description="All articles from The Skeptical Trader.">
+  <h1 class="index-heading">Articles</h1>
 
   <ul class="article-list">
-    {recent.map(article => {
+    {allArticles.map(article => {
       const slug = article.id.replace(/\.md$/, '');
       return (
         <li class="article-list-item">
           {article.data.category && <span class="article-tag">{article.data.category}</span>}
-          <h3><a href={`${base}articles/${slug}/`}>{article.data.title}</a></h3>
+          <h2><a href={`${base}articles/${slug}/`}>{article.data.title}</a></h2>
           <p class="article-meta">{formatDate(article.data.publishDate)}</p>
           <p class="article-desc">{article.data.description}</p>
         </li>
       );
     })}
   </ul>
-
-  <a href={`${base}articles/`} class="view-all">View all articles →</a>
 </BaseLayout>

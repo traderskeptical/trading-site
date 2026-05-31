@@ -1,0 +1,146 @@
+<svg
+  viewBox="0 0 960 230"
+  xmlns="http://www.w3.org/2000/svg"
+  width="100%"
+  height="auto"
+  aria-label="A bull on the left, a skeptical thinker in the centre, and a bear on the right"
+  class="hero-illustration"
+>
+  <defs>
+    <!-- Subtle green glow left, red glow right -->
+    <radialGradient id="bull-bg" cx="25%" cy="70%" r="40%">
+      <stop offset="0%" stop-color="#1a3322" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0f1117" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bear-bg" cx="75%" cy="70%" r="40%">
+      <stop offset="0%" stop-color="#331a1a" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#0f1117" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background glow zones -->
+  <rect x="0"   y="0" width="960" height="230" fill="url(#bull-bg)"/>
+  <rect x="0"   y="0" width="960" height="230" fill="url(#bear-bg)"/>
+
+  <!-- Subtle background chart line -->
+  <polyline
+    points="20,200 130,165 250,120 380,148 480,158 580,148 710,120 830,165 940,200"
+    stroke="#252830" stroke-width="1.5" fill="none"
+  />
+
+  <!-- Ghost upward arrow, left -->
+  <line x1="308" y1="195" x2="308" y2="75" stroke="#3a7d44" stroke-width="1.5" opacity="0.25" stroke-dasharray="5,4"/>
+  <polygon points="308,62 299,82 317,82" fill="#3a7d44" opacity="0.25"/>
+
+  <!-- Ghost downward arrow, right -->
+  <line x1="652" y1="75" x2="652" y2="195" stroke="#8b2e2e" stroke-width="1.5" opacity="0.25" stroke-dasharray="5,4"/>
+  <polygon points="652,208 643,188 661,188" fill="#8b2e2e" opacity="0.25"/>
+
+  <!-- VS dividers -->
+  <text x="342" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#333" letter-spacing="0.12em">VS</text>
+  <text x="618" y="120" text-anchor="middle" font-family="system-ui,sans-serif" font-size="10" fill="#333" letter-spacing="0.12em">VS</text>
+
+  <!-- ─────────────── BULL (left) ─────────────── -->
+  <!-- Tail -->
+  <path d="M 62 148 Q 42 128 48 108 Q 54 92 64 98" stroke="#3a7d44" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Body -->
+  <ellipse cx="148" cy="158" rx="88" ry="46" fill="#2a6035"/>
+  <!-- Neck -->
+  <ellipse cx="222" cy="145" rx="28" ry="26" fill="#2a6035"/>
+  <!-- Head -->
+  <circle cx="242" cy="116" r="36" fill="#357a42"/>
+  <!-- Snout -->
+  <ellipse cx="267" cy="128" rx="17" ry="11" fill="#245230"/>
+  <!-- Nostrils -->
+  <circle cx="261" cy="127" r="3" fill="#122a1a"/>
+  <circle cx="271" cy="129" r="3" fill="#122a1a"/>
+  <!-- Eye -->
+  <circle cx="252" cy="108" r="5" fill="#0a0f0a"/>
+  <circle cx="250" cy="106" r="2" fill="#c8e8cc"/>
+  <!-- Left horn -->
+  <path d="M 222 91 Q 208 58 222 40" stroke="#58b864" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Right horn -->
+  <path d="M 246 88 Q 258 54 280 46" stroke="#58b864" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Legs -->
+  <rect x="80"  y="196" width="19" height="26" rx="5" fill="#1e4d28"/>
+  <rect x="110" y="196" width="19" height="26" rx="5" fill="#1e4d28"/>
+  <rect x="150" y="196" width="19" height="26" rx="5" fill="#1e4d28"/>
+  <rect x="180" y="196" width="19" height="26" rx="5" fill="#1e4d28"/>
+  <!-- BULL label -->
+  <text x="148" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#3a7d44" letter-spacing="0.15em">BULL</text>
+
+  <!-- ─────────────── BEAR (right) ─────────────── -->
+  <!-- Tail -->
+  <path d="M 898 150 Q 918 130 912 108 Q 906 92 896 98" stroke="#6b2020" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <!-- Body -->
+  <ellipse cx="812" cy="160" rx="88" ry="48" fill="#5c1a1a"/>
+  <!-- Neck -->
+  <ellipse cx="738" cy="148" rx="30" ry="28" fill="#5c1a1a"/>
+  <!-- Head -->
+  <circle cx="718" cy="116" r="40" fill="#7a2828"/>
+  <!-- Ears -->
+  <circle cx="746" cy="80" r="15" fill="#5c1a1a"/>
+  <circle cx="746" cy="80" r="8"  fill="#4a1212"/>
+  <circle cx="692" cy="78" r="15" fill="#5c1a1a"/>
+  <circle cx="692" cy="78" r="8"  fill="#4a1212"/>
+  <!-- Snout -->
+  <ellipse cx="694" cy="130" rx="20" ry="13" fill="#4a1212"/>
+  <!-- Nostrils -->
+  <circle cx="687" cy="128" r="3.5" fill="#2a0808"/>
+  <circle cx="700" cy="131" r="3.5" fill="#2a0808"/>
+  <!-- Eye -->
+  <circle cx="705" cy="106" r="5" fill="#0a0808"/>
+  <circle cx="703" cy="104" r="2" fill="#e8c8c8"/>
+  <!-- Legs -->
+  <rect x="750" y="198" width="19" height="26" rx="5" fill="#4a1212"/>
+  <rect x="780" y="198" width="19" height="26" rx="5" fill="#4a1212"/>
+  <rect x="820" y="198" width="19" height="26" rx="5" fill="#4a1212"/>
+  <rect x="850" y="198" width="19" height="26" rx="5" fill="#4a1212"/>
+  <!-- BEAR label -->
+  <text x="812" y="228" text-anchor="middle" font-family="system-ui,sans-serif" font-size="9" fill="#7a2828" letter-spacing="0.15em">BEAR</text>
+
+  <!-- ─────────────── THINKER (centre) ─────────────── -->
+  <!-- Thought bubble trail -->
+  <circle cx="510" cy="75" r="3.5" fill="#e2e2e2" opacity="0.45"/>
+  <circle cx="522" cy="60" r="5.5" fill="#e2e2e2" opacity="0.55"/>
+  <circle cx="538" cy="43" r="8"   fill="#e2e2e2" opacity="0.65"/>
+  <!-- Thought bubble cloud -->
+  <ellipse cx="572" cy="22" rx="33" ry="20" fill="#161b24" stroke="#c9a84c" stroke-width="1.5"/>
+  <text x="572" y="30" text-anchor="middle" font-family="Georgia,serif" font-size="23" fill="#c9a84c">?</text>
+  <!-- Head -->
+  <circle cx="480" cy="100" r="29" fill="#c9a84c"/>
+  <!-- Hair -->
+  <path d="M 456 90 Q 460 68 480 70 Q 500 68 507 83" fill="#9a7820"/>
+  <!-- Eyes — looking sideways (thinking) -->
+  <ellipse cx="472" cy="97" rx="4" ry="4.5" fill="#1a0f00"/>
+  <ellipse cx="488" cy="97" rx="4" ry="4.5" fill="#1a0f00"/>
+  <circle cx="474" cy="98" r="1.5" fill="#000"/>
+  <circle cx="490" cy="98" r="1.5" fill="#000"/>
+  <!-- Eyebrows furrowed -->
+  <path d="M 466 89 Q 472 86 478 88" stroke="#7a5a08" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 482 88 Q 488 86 494 89" stroke="#7a5a08" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Mouth — neutral line -->
+  <path d="M 473 110 Q 480 113 487 110" stroke="#7a5a08" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Right arm raised to chin -->
+  <path d="M 504 126 Q 520 134 514 150" stroke="#2c3a50" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Hand at chin -->
+  <circle cx="510" cy="127" r="7" fill="#c9a84c"/>
+  <!-- Body / jacket -->
+  <path d="M 452 128 L 448 210 L 512 210 L 508 128 Q 494 118 480 120 Q 466 118 452 128Z" fill="#2c3a50"/>
+  <!-- Shirt collar -->
+  <path d="M 466 126 L 480 140 L 494 126" fill="#e8e8e8"/>
+  <!-- Left arm down -->
+  <path d="M 452 134 Q 436 158 440 182" stroke="#2c3a50" stroke-width="14" fill="none" stroke-linecap="round"/>
+  <!-- Legs -->
+  <rect x="456" y="207" width="18" height="28" rx="5" fill="#1e2535"/>
+  <rect x="480" y="207" width="18" height="28" rx="5" fill="#1e2535"/>
+</svg>
+
+<style>
+  .hero-illustration {
+    display: block;
+    margin: 2rem auto;
+    max-height: 200px;
+    opacity: 0.92;
+  }
+</style>
