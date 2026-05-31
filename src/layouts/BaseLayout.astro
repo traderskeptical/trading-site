@@ -12,7 +12,7 @@ const {
   description = 'Cutting through the spin — the reality of trading and current market events.',
 } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const pageTitle = title === 'The Skeptical Trader' ? title : `${title} — The Skeptical Trader`;
 ---
 
